@@ -1,5 +1,5 @@
 # smile-game-backend
-This project is to create a web application backend for smile game as the Final Year module project in University of Bedfordshire.
+This project is to create a web application backend for smile game as the Final Year Module Project in University of Bedfordshire.
 
 ## ✨Run Locally
 
