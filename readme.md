@@ -1,4 +1,4 @@
-# children-cloud-backend
+# smile-game-backend
 This project is to create a web application backend for smile game as the Final Year module project in University of Bedfordshire.
 
 ## ✨Run Locally
