@@ -8,7 +8,6 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (username, password) => {
-  //check if user exists and return the user and password is decrypted
   const users = await User.find();
   const user = users.find(
     (user) => user.name === username
@@ -26,7 +25,6 @@ export const getUser = async (username, password) => {
 };
 
 export const addUser = async (user) => {
-    //check if user already exists get the password and encrypt add the user to the database
     //Check if user already exists
     const users = await User.find();
     const userExists = users.find(
@@ -45,8 +43,6 @@ export const addUser = async (user) => {
     return result;
     }
     
-
-
     // const users = await User.find();
     // const userExists = users.find(
     //     (users) =>  user.email === users.email
@@ -74,20 +70,38 @@ export const getUserByID = async (id) => {
 };
 
 export const updateUser = async (id, user) => {
-//edit the user  with the id and using the user object
+//edit the user  with the id and using the user object and encrypt the password
   const users = await User.find();
   const userExists = users.find(
-    (users) =>  id === users.id 
+    (users) =>  id === users.id
   );
   if (userExists) {
+    const password = user.password;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     userExists.name = user.name;
     userExists.email = user.email;
-    userExists.password = user.password;
+    userExists.password = hashedPassword;
     userExists.save();
     return userExists;
   }
   else{
     return "User does not exist";
   }
+      
+  // const users = await User.find();
+  // const userExists = users.find(
+  //   (users) =>  id === users.id 
+  // );
+  // if (userExists) {
+  //   userExists.name = user.name;
+  //   userExists.email = user.email;
+  //   userExists.password = user.password;
+  //   userExists.save();
+  //   return userExists;
+  // }
+  // else{
+  //   return "User does not exist";
+  // }
 }
 
